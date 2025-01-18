@@ -1,24 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8ek6wt51eg56"]
+[gd_scene load_steps=9 format=3 uid="uid://c8ek6wt51eg56"]
 
 [ext_resource type="Script" path="res://character_body_3d.gd" id="1_ol1pf"]
+[ext_resource type="Texture2D" uid="uid://ct2g0eypix1rx" path="res://textures/green_metal_rust_diff_4k.jpg" id="2_2vk06"]
+[ext_resource type="Texture2D" uid="uid://bmkqbpg1qapny" path="res://textures/granite_tile_disp_4k.png" id="3_q67bn"]
+[ext_resource type="Texture2D" uid="uid://vgjje81ywc7q" path="res://textures/green_metal_rust_nor_gl_4k.png" id="4_ujip5"]
+[ext_resource type="Texture2D" uid="uid://bdkwn8o65t256" path="res://textures/green_metal_rust_rough_4k.jpg" id="5_fjdvf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yeiyh"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_eqq2r"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3kgxc"]
+albedo_texture = ExtResource("2_2vk06")
+roughness_texture = ExtResource("5_fjdvf")
+normal_enabled = true
+normal_texture = ExtResource("4_ujip5")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_q67bn")
+uv1_triplanar = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_hr0o7"]
+material = SubResource("StandardMaterial3D_3kgxc")
 
 [node name="PlayerWeapon" type="Node3D"]
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.814789, -0.237973, 0.528666, 0.293455, 0.617146, 0.730078, -0.500003, 0.749999, -0.43301, 14.2201, 12.1832, 0)
+shadow_enabled = true
+
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 script = ExtResource("1_ol1pf")
+speed = 70.0
+extra_vel_multi = 1000.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 shape = SubResource("SphereShape3D_yeiyh")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 2.5, 0)
-mesh = SubResource("SphereMesh_eqq2r")
-skeleton = NodePath("../CollisionShape3D")
+[node name="head" type="Node3D" parent="CharacterBody3D"]
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/head"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 2.5, 0)
+mesh = SubResource("SphereMesh_hr0o7")
+skeleton = NodePath("../../CollisionShape3D")
+
+[node name="Camera" type="Camera3D" parent="CharacterBody3D/head"]
 transform = Transform3D(1, 0, 0, 0, 0.991445, 0.130526, 0, -0.130526, 0.991445, 0, 7, 7)

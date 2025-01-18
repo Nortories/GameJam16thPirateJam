@@ -1,10 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://btojm5rkholki"]
+[gd_scene load_steps=8 format=3 uid="uid://btojm5rkholki"]
 
 [ext_resource type="PackedScene" uid="uid://c8ek6wt51eg56" path="res://player_weapon.tscn" id="1_5pisr"]
+[ext_resource type="Texture2D" uid="uid://bmkqbpg1qapny" path="res://textures/granite_tile_disp_4k.png" id="1_ycm51"]
+[ext_resource type="Texture2D" uid="uid://dnkbt4ek2u4gg" path="res://textures/granite_tile_nor_gl_4k.png" id="2_325wi"]
+[ext_resource type="Texture2D" uid="uid://b0ruebhjdjmfw" path="res://textures/granite_tile_rough_4k.png" id="3_qnfh0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ef0ta"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b2wbl"]
+albedo_texture = ExtResource("1_ycm51")
+roughness_texture = ExtResource("3_qnfh0")
+normal_enabled = true
+normal_texture = ExtResource("2_325wi")
+uv1_scale = Vector3(50, 50, 50)
+uv1_triplanar = true
+
 [sub_resource type="BoxMesh" id="BoxMesh_p8ejt"]
+material = SubResource("StandardMaterial3D_b2wbl")
 
 [node name="Map1" type="Node3D"]
 
@@ -15,11 +27,11 @@ shadow_enabled = true
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, -25, 0)
+transform = Transform3D(2000, 0, 0, 0, 1, 0, 0, 0, 2000, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_ef0ta")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, -25, 0)
+transform = Transform3D(2000, 0, 0, 0, 1, 0, 0, 0, 2000, 0, -0.5, 0)
 mesh = SubResource("BoxMesh_p8ejt")
 
 [node name="PlayerWeapon" parent="." instance=ExtResource("1_5pisr")]
