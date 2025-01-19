@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://btojm5rkholki"]
+[gd_scene load_steps=9 format=3 uid="uid://btojm5rkholki"]
 
 [ext_resource type="PackedScene" uid="uid://c8ek6wt51eg56" path="res://player_weapon.tscn" id="1_5pisr"]
 [ext_resource type="Texture2D" uid="uid://bmkqbpg1qapny" path="res://textures/granite_tile_disp_4k.png" id="1_ycm51"]
 [ext_resource type="Texture2D" uid="uid://dnkbt4ek2u4gg" path="res://textures/granite_tile_nor_gl_4k.png" id="2_325wi"]
 [ext_resource type="Texture2D" uid="uid://b0ruebhjdjmfw" path="res://textures/granite_tile_rough_4k.png" id="3_qnfh0"]
+[ext_resource type="PackedScene" uid="uid://ku1t02seitcl" path="res://box.tscn" id="5_n5lm5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ef0ta"]
 
@@ -36,3 +37,6 @@ mesh = SubResource("BoxMesh_p8ejt")
 
 [node name="PlayerWeapon" parent="." instance=ExtResource("1_5pisr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="box" parent="." instance=ExtResource("5_n5lm5")]
+transform = Transform3D(1, 0, 0, 0, 28.1466, 0, 0, 0, 28.8971, -11, 44.2257, 3)

@@ -3,11 +3,11 @@ extends CharacterBody3D
 @export var MOUSE_SENS: float = 0.005
 @export var gravity: float = -3.0
 @export var speed: float = 30.0
-@export var jump_strength: float = 50.0
+@export var jump_strength: float = 25.0
 @export var max_jump_amt: int = 3
 @export var max_dash_amt: int = 3
-@export var extra_vel_multi: float = 400.0
-@export var min_fov: float = 125.0
+@export var extra_vel_multi: float = 50.0
+@export var min_fov: float = 50
 
 var ang_for_cam_to_lerp_to: float = 0.0
 var x_ang_for_cam_to_lerp_to: float = 0.0
@@ -20,27 +20,12 @@ var target_fov: float = 0.0
 var fov_timer: float = 10.0
 var fov_duration: float = .45
 
+# _ready is called when the node is added to the scene for the first time.
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	target_fov = $head/Camera.fov
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		$head.rotation.x += -event.relative.y * MOUSE_SENS
-		rotation.y += -event.relative.x * MOUSE_SENS
-		$head.rotation.x = clamp($head.rotation.x, deg_to_rad(-90), deg_to_rad(90)) # Prevent head flipping
 
-func jump() -> void:
-	jump_num += 1
-	y_speed = jump_strength
-
-func dash_forward() -> void:
-	dash_num += 1
-	print(sign(y_speed))
-	if sign(y_speed) == -1:
-		y_speed = 0
-	extra_velocity += -$head/Camera.global_transform.basis.z * extra_vel_multi
-	fov()
-
+# _physics_process is called every frame. Delta is the time in seconds since the last frame.
 func _physics_process(delta: float) -> void:
 	velocity_3d = get_dir().rotated(Vector3.UP, rotation.y) * speed
 
@@ -56,8 +41,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_jump") and dash_num < max_dash_amt:
 		dash_forward()
 
-	$head.rotation_degrees.z = lerp($head.rotation_degrees.z, ang_for_cam_to_lerp_to, 0.1)
-	$head/Camera.rotation_degrees.x = lerp($head/Camera.rotation_degrees.x, x_ang_for_cam_to_lerp_to, 0.1)
+	#$head.rotation_degrees.z = lerp($head.rotation_degrees.z, ang_for_cam_to_lerp_to, 0.1)
+	#$head/Camera.rotation_degrees.x = lerp($head/Camera.rotation_degrees.x, x_ang_for_cam_to_lerp_to, 0.1)
 	extra_velocity = lerp(extra_velocity, Vector3.ZERO, 0.1)
 
 	velocity_3d.y = y_speed
@@ -72,6 +57,27 @@ func _physics_process(delta: float) -> void:
 			$head/Camera.fov = lerp(target_fov, min_fov, fov_timer / (fov_duration / 2))
 		else:
 			$head/Camera.fov = lerp(min_fov, target_fov, (fov_timer - fov_duration / 2) / (fov_duration / 2))
+
+# _input is called when the node receives an input event.
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		$head.rotation.x += -event.relative.y * MOUSE_SENS
+		rotation.y += -event.relative.x * MOUSE_SENS
+		$head.rotation.x = clamp($head.rotation.x, deg_to_rad(-90), deg_to_rad(90)) # Prevent head flipping
+
+
+func jump() -> void:
+	jump_num += 1
+	y_speed = jump_strength
+
+func dash_forward() -> void:
+	dash_num += 1
+	print(sign(y_speed))
+	if sign(y_speed) == -1:
+		y_speed = 0
+	extra_velocity += -$head/Camera.global_transform.basis.z * extra_vel_multi
+	fov()
+
 			
 func fov() -> void:
 	fov_timer = 0
