@@ -33,6 +33,7 @@ floor_block_on_wall = false
 floor_max_angle = 0.0
 safe_margin = 0.005
 script = ExtResource("1_ol1pf")
+speed = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 shape = SubResource("SphereShape3D_yeiyh")

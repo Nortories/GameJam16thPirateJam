@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4plsiof8w1pg"]
+
+[ext_resource type="PackedScene" uid="uid://csrrlss3ljqrq" path="res://weapon_system.tscn" id="1_d8ucp"]
+[ext_resource type="PackedScene" uid="uid://6nhbw4ky3w2b" path="res://Utils/Draggable/dragable_object.tscn" id="2_a0ch8"]
+
+[node name="Main" type="Node"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="WeaponSystem" parent="." instance=ExtResource("1_d8ucp")]
+
+[node name="object" parent="." instance=ExtResource("2_a0ch8")]
+position = Vector2(-6, -153)

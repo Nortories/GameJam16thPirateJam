@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://csrrlss3ljqrq"]
+
+[ext_resource type="Texture2D" uid="uid://d37vkdk00imug" path="res://assets/placeholders/weaponLayout/weaponLayoutv1.png" id="1_7rerf"]
+[ext_resource type="PackedScene" uid="uid://clc7isnbq0q0x" path="res://Utils/Draggable/object_placment_box.tscn" id="2_662qc"]
+
+[node name="WeaponSystem" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7rerf")
+
+[node name="placement areas" type="Node" parent="."]
+
+[node name="platform" parent="placement areas" instance=ExtResource("2_662qc")]
+position = Vector2(-680, 32)
+
+[node name="platform2" parent="placement areas" instance=ExtResource("2_662qc")]
+position = Vector2(-495, 32)
+
+[node name="platform3" parent="placement areas" instance=ExtResource("2_662qc")]
+position = Vector2(-316, 28)
+
+[node name="platform4" parent="placement areas" instance=ExtResource("2_662qc")]
+position = Vector2(-119, 30)
+
+[node name="platform5" parent="placement areas" instance=ExtResource("2_662qc")]
+position = Vector2(83, 28)
+
+[node name="platform6" parent="placement areas" instance=ExtResource("2_662qc")]
+position = Vector2(265, 28)
+
+[node name="platform7" parent="placement areas" instance=ExtResource("2_662qc")]
+position = Vector2(463, 23)
+
+[node name="platform8" parent="placement areas" instance=ExtResource("2_662qc")]
+position = Vector2(650, 24)
+
+[node name="platform9" parent="placement areas" instance=ExtResource("2_662qc")]
+position = Vector2(-653, 226)
+
+[node name="platform10" parent="placement areas" instance=ExtResource("2_662qc")]
+position = Vector2(-477, 225)
+
+[node name="platform11" parent="placement areas" instance=ExtResource("2_662qc")]
+position = Vector2(-285, 223)
+
+[node name="platform12" parent="placement areas" instance=ExtResource("2_662qc")]
+position = Vector2(155, 227)
+
+[node name="platform13" parent="placement areas" instance=ExtResource("2_662qc")]
+position = Vector2(358, 228)
+
+[node name="platform14" parent="placement areas" instance=ExtResource("2_662qc")]
+position = Vector2(570, 219)
+
+[node name="platform15" parent="placement areas" instance=ExtResource("2_662qc")]
+position = Vector2(-301, 407)
+
+[node name="platform16" parent="placement areas" instance=ExtResource("2_662qc")]
+position = Vector2(-57, 408)
+
+[node name="platform17" parent="placement areas" instance=ExtResource("2_662qc")]
+position = Vector2(160, 405)
