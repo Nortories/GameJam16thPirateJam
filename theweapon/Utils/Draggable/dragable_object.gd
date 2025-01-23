@@ -11,11 +11,11 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("click"):
 			initialPos = global_position
 			offset = get_global_mouse_position() - global_position
-			Dragable.is_dragging = true
+			dragable.is_dragging = true
 		if Input.is_action_pressed("click"):
 			global_position = get_global_mouse_position() - offset
 		elif Input.is_action_just_released("click"):
-			Dragable.is_dragging = false
+			dragable.is_dragging = false
 			var tween = get_tree().create_tween()
 			if is_inside_dropable:
 				tween.tween_property(self,"position",body_ref.position,0.2).set_ease(Tween.EASE_OUT)
@@ -35,11 +35,11 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		body.modulate = Color(Color.REBECCA_PURPLE, 0.7)
 
 func _on_area_2d_mouse_entered() -> void:
-	if not Dragable.is_dragging:
+	if not dragable.is_dragging:
 		draggable = true
 		scale = Vector2(1.05, 1.05)
 
 func _on_area_2d_mouse_exited() -> void:
-	if not Dragable.is_dragging:
+	if not dragable.is_dragging:
 		draggable = false
 		scale = Vector2(1, 1)

@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Dragable="*res://dragable.gd"
+dragable="*res://global_vars.gd"
 
 [global_group]
 
